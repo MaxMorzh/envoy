@@ -16,6 +16,8 @@ common --noenable_bzlmod
 fetch --color=yes
 run --color=yes
 
+build --cxxopt=-std=c++20
+build --host_cxxopt=-std=c++20
 build --color=yes
 build --jobs=HOST_CPUS-1
 build --workspace_status_command="bash bazel/get_workspace_status"

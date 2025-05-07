@@ -3,7 +3,7 @@ EXTENSIONS = {
     #
     # Access loggers
     #
-
+    "envoy.filters.http.ring_buffer_cache": "//source/extensions/filters/http/ring_buffer_cache:config",
     "envoy.access_loggers.file":                        "//source/extensions/access_loggers/file:config",
     "envoy.access_loggers.extension_filters.cel":       "//source/extensions/access_loggers/filters/cel:config",
     "envoy.access_loggers.fluentd"  :                   "//source/extensions/access_loggers/fluentd:config",

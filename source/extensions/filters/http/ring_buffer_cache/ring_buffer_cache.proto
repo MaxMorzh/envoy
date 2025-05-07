@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package envoy.extensions.filters.http.ring_buffer_cache.v3;
+
+import "validate/validate.proto";
+
+message RingBufferCacheConfig {
+  uint32 buffer_size = 1 [(validate.rules).uint32 = {gte: 1}];
+}
