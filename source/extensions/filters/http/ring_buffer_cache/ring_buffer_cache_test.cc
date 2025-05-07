@@ -1,4 +1,3 @@
-/*
 #include "source/extensions/filters/http/ring_buffer_cache/ring_buffer_cache.h" // Your filter header
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
@@ -97,4 +96,3 @@ TEST_F(RingBufferCacheTest, PendingRequestDestroyed) {
 } // namespace HttpFilters
 } // namespace Extensions
 } // namespace Envoy
-*/
