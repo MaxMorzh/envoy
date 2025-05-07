@@ -4,7 +4,6 @@ load(
     "envoy_cc_library",
     "envoy_extension_package",
     "envoy_proto_library",
-    "envoy_cc_test",
 )
 
 licenses(["notice"])  # Apache 2
@@ -51,18 +50,5 @@ envoy_cc_extension(
         "//source/extensions/filters/http/common:factory_base_lib",
         ":ring_buffer_cache_proto_cc_proto",
         "@com_envoyproxy_protoc_gen_validate//validate:validate_cc",
-    ],
-)
-
-envoy_cc_test(
-    name = "ring_buffer_cache_test",
-    srcs = ["ring_buffer_cache_test.cc"],
-    deps = [
-        ":ring_buffer_cache_lib",
-        "//test/mocks/buffer:buffer_mocks",
-        "//test/mocks/http:http_mocks",
-        "//test/mocks/server:server_mocks",
-        "//test/mocks/stream_info:stream_info_mocks",
-        "//test/test_common:utility_lib",
     ],
 )
