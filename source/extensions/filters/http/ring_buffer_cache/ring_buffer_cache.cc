@@ -45,6 +45,7 @@ void RingBufferCache::notifyWaiters(const std::string& key, SharedState::Callbac
     ConstResponseTrailerMapPtr trailers_to_send_sptr;
     bool data_found = false;
 
+    absl::ReaderMutexLock lock(&shared_state_->mutex_);
     auto cache_it = shared_state_->cache_.find(key);
     if (cache_it != shared_state_->cache_.end() && !cache_it->second.empty()) {
         const auto& cached_entry = cache_it->second.front();
@@ -123,7 +124,7 @@ Http::FilterHeadersStatus RingBufferCache::decodeHeaders(Http::RequestHeaderMap&
         return Http::FilterHeadersStatus::Continue;
     }
 
-    bool cache_hit = false;
+    //bool cache_hit = false;
     auto status = Http::FilterHeadersStatus::Continue;
 
     {
@@ -280,6 +281,7 @@ void RingBufferCache::processEndOfStream(const std::string& key, bool response_w
 void RingBufferCache::notifyWaiters(const std::string& key, SharedState::CallbackList& waiters, ConstResponseHeaderMapPtr headers, const OwnedBufferInstancePtr& body, ConstResponseTrailerMapPtr trailers, bool data_found) {
     if (!data_found || !headers) return;
 
+    (void)key; //for now
     for (Http::StreamDecoderFilterCallbacks* cb : waiters) {
         if (!cb) continue;
 

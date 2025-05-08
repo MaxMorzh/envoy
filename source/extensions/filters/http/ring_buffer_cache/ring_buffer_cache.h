@@ -123,6 +123,14 @@ private:
     //Builds a cache key from request headers
     std::string generateCacheKey(const Http::RequestHeaderMap& headers);
 
+    bool isResponseCacheable(const Http::ResponseHeaderMap& headers);
+
+    void resetFilterState();
+
+    void notifyWaiters(const std::string& key, SharedState::CallbackList& waiters);
+
+    void notifyWaiters(const std::string& key, SharedState::CallbackList& waiters, ConstResponseHeaderMapPtr headers, const OwnedBufferInstancePtr& body, ConstResponseTrailerMapPtr trailers, bool data_found);
+
     //Stores the response if it's cacheable and not already stored
     void processEndOfStream(const std::string& key, bool response_was_cacheable_and_cached);
 };
