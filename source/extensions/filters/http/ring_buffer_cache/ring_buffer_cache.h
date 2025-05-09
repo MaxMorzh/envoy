@@ -59,7 +59,7 @@ struct SharedState {
     PendingRequestsMap pending_requests_ ABSL_GUARDED_BY(mutex_);
     absl::Mutex mutex_; //Used to protect access to both cache_ and pending_requests_
 
-    const uint32_t buffer_size_;
+    const int64_t buffer_size_;
 };
 
 using SharedStatePtr = std::shared_ptr<SharedState>;

@@ -92,7 +92,7 @@ void RingBufferCache::onDestroy() {
         return;
     }
 
-    uint64_t stream_id = decoder_callbacks_->streamId();
+    int64_t stream_id = decoder_callbacks_->streamId();
     const std::string& key = pending_cache_key_.value();
 
     absl::WriterMutexLock lock(&shared_state_->mutex_);
@@ -221,7 +221,7 @@ Http::FilterTrailersStatus RingBufferCache::decodeTrailers(Http::RequestTrailerM
 
 //Finalize and notify waiters after response is complete
 void RingBufferCache::processEndOfStream(const std::string& key, bool response_was_cacheable) {
-    uint64_t stream_id = decoder_callbacks_ ? decoder_callbacks_->streamId() : 0;
+    int64_t stream_id = decoder_callbacks_ ? decoder_callbacks_->streamId() : 0;
     SharedState::CallbackList callbacks;
 
     {
